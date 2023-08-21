@@ -60,7 +60,6 @@ typedef struct myparameters
  *
  * @specifier: format token
  * @f: The function associated
- * 
  */
 
 typedef struct specifier
