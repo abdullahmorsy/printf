@@ -1,62 +1,51 @@
 #include "main.h"
 
+/**
+ * _printf - prints and input into the standard output
+ * @format: the format string
+ * Return: number of bytes printed
+ */
+
 int _printf(const char *format, ...)
+
 {
 	int sum = 0;
 	va_list arg;
+	char *p, *start;
+
+	params_t myparams = PARAMS_INIT;
 
 	va_start(arg, format);
 
-	if (!format)
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-
-	for (const char *p = format; *p; p++)
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = (char *)format; *p; p++)
 	{
+		init_params(&myparams, arg);
 		if (*p != '%')
 		{
 			sum += _putchar(*p);
 			continue;
 		}
-
-		p++; // Move past '%'
-
-		if (*p == '\0')
-			return (-1); // Incomplete format specifier
-
-		if (*p == 'c')
+		start = p;
+		p++;
+		while (get_flag(p, &myparams))
 		{
-			char c = va_arg(arg, int);
-			sum += _putchar(c);
+			p++;
 		}
-		else if (*p == 's')
-		{
-			char *str = va_arg(arg, char *);
-			if (str == NULL)
-				str = NULL_STRING;
-
-			// Handle precision for the 's' specifier
-			char *precision = get_precision(p + 1, &myparams, arg);
-			int max_chars = (precision != NULL) ? atoi(precision) : -1;
-
-			if (max_chars == -1 || _strlen(str) < max_chars)
-				sum += _puts(str);
-			else
-				sum += print_from_to(str, str + max_chars, NULL);
-
-			// Move past the precision specifier (if present)
-			while (_isdigit(*p))
-				p++;
-		}
-		else if (*p == '%')
-		{
-			sum += _putchar('%');
-		}
+		p = get_width(p, &myparams, arg);
+		p = get_precision(p, &myparams, arg);
+		if (get_modifier(p, &myparams))
+			p++;
+		if (!get_specifier(p))
+			sum += print_from_to(start, p,
+					myparams.l_modifier || myparams.h_modifier ? p - 1 : 0);
 		else
-		{
-			// Unsupported format specifier, ignore it
-		}
+			sum += get_print_func(p, arg, &myparams);
 	}
-
+	_putchar(BUF_FLUSH);
 	va_end(arg);
 	return (sum);
 }
