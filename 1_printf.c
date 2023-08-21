@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	va_list arg;
 	char *p, *start;
 
-	myparams_t myparams = PARAMS_INIT;
+	params_t myparams = PARAMS_INIT;
 
 	va_start(arg, format);
 

@@ -6,7 +6,7 @@
  * Return: the number of bytes printed
  */
 
-int (*get_specifier(char *s))(va_list arg, myparams_t *myparams)
+int (*get_specifier(char *s))(va_list arg, params_t *myparams)
 
 {
 	specifier_t specifiers[] = {
@@ -48,9 +48,9 @@ int (*get_specifier(char *s))(va_list arg, myparams_t *myparams)
  * Return: the number of bytes printed
  */
 
-int get_print_func(char *s, va_list arg, myparams_t *myparams)
+int get_print_func(char *s, va_list arg, params_t *myparams)
 {
-	int (*f)(va_list, myparams_t *) = get_specifier(s);
+	int (*f)(va_list, params_t *) = get_specifier(s);
 
 	if (f)
 		return (f(arg, myparams));
@@ -64,7 +64,7 @@ int get_print_func(char *s, va_list arg, myparams_t *myparams)
  * Return: if flag was valid
  */
 
-int get_flag(char *s, myparams_t *myparams)
+int get_flag(char *s, params_t *myparams)
 
 {
 	int i = 0;
@@ -97,7 +97,7 @@ int get_flag(char *s, myparams_t *myparams)
  * Return: if modifier was valid
  */
 
-int get_modifier(char *s, myparams_t *myparams)
+int get_modifier(char *s, params_t *myparams)
 {
 	int i = 0;
 
@@ -121,7 +121,7 @@ int get_modifier(char *s, myparams_t *myparams)
  * Return: new pointer
  */
 
-char *get_width(char *s, myparams_t *myparams, va_list arg)
+char *get_width(char *s, params_t *myparams, va_list arg)
 {
 	int d = 0;
 

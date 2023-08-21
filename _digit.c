@@ -7,7 +7,7 @@
  * Return: void
  */
 
-void init_params(myparams_t *myparams, va_list arg)
+void init_params(params_t *myparams, va_list arg)
 {
 	myparams->unsign = 0;
 

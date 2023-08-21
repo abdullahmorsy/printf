@@ -53,7 +53,7 @@ typedef struct myparameters
 
 	unsigned int h_modifier		: 1;
 	unsigned int l_modifier		: 1;
-} myparams_t;
+} params_t;
 
 /**
  * struct specifier - Struct token
@@ -61,17 +61,10 @@ typedef struct myparameters
  * @specifier: format token
  * @f: The function associated
  */
-
 typedef struct specifier
 {
 	char *specifier;
-	int (*f)(va_list, myparams_t *);
-} specifier_t;
-
-typedef struct specifier
-{
-	char *specifier;
-	int (*f)(va_list, myparams_t *);
+	int (*f)(va_list, params_t *);
 } specifier_t;
 
 /* _put.c module */
@@ -79,47 +72,47 @@ int _puts(char *str);
 int _putchar(int c);
 
 /* print_functions.c module */
-int print_char(va_list arg, myparams_t *myparams);
-int print_int(va_list arg, myparams_t *myparams);
-int print_string(va_list arg, myparams_t *myparams);
-int print_percent(va_list arg, myparams_t *myparams);
-int print_S(va_list arg, myparams_t *myparams);
+int print_char(va_list arg, params_t *myparams);
+int print_int(va_list arg, params_t *myparams);
+int print_string(va_list arg, params_t *myparams);
+int print_percent(va_list arg, params_t *myparams);
+int print_S(va_list arg, params_t *myparams);
 
 /* number.c module */
-char *convert(long int mynum, int mybase, int myflags, myparams_t *myparams);
-int print_unsigned(va_list arg, myparams_t *myparams);
-int print_address(va_list arg, myparams_t *myparams);
+char *convert(long int mynum, int mybase, int myflags, params_t *myparams);
+int print_unsigned(va_list arg, params_t *myparams);
+int print_address(va_list arg, params_t *myparams);
 
 /* specifier.c module */
-int (*get_specifier(char *s))(va_list arg, myparams_t *myparams);
-int get_print_func(char *s, va_list arg, myparams_t *myparams);
-int get_flag(char *s, myparams_t *myparams);
-int get_modifier(char *s, myparams_t *myparams);
-char *get_width(char *s, myparams_t *myparams, va_list arg);
+int (*get_specifier(char *s))(va_list arg, params_t *myparams);
+int get_print_func(char *s, va_list arg, params_t *myparams);
+int get_flag(char *s, params_t *myparams);
+int get_modifier(char *s, params_t *myparams);
+char *get_width(char *s, params_t *myparams, va_list arg);
 
 /* convert_number.c module */
-int print_hex(va_list arg, myparams_t *myparams);
-int print_HEX(va_list arg, myparams_t *myparams);
-int print_binary(va_list arg, myparams_t *myparams);
-int print_octal(va_list arg, myparams_t *myparams);
+int print_hex(va_list arg, params_t *myparams);
+int print_HEX(va_list arg, params_t *myparams);
+int print_binary(va_list arg, params_t *myparams);
+int print_octal(va_list arg, params_t *myparams);
 
 /* simple_printers.c module */
 int print_from_to(char *start, char *stop, char *except);
-int print_rev(va_list arg, myparams_t *myparams);
-int print_rot13(va_list arg, myparams_t *myparams);
+int print_rev(va_list arg, params_t *myparams);
+int print_rot13(va_list arg, params_t *myparams);
 
 /* print_number.c module */
 int _isdigit(int c);
 int _strlen(char *s);
-int print_number(char *str, myparams_t *myparams);
-int print_number_right_shift(char *str, myparams_t *myparams);
-int print_number_left_shift(char *str, myparams_t *myparams);
+int print_number(char *str, params_t *myparams);
+int print_number_right_shift(char *str, params_t *myparams);
+int print_number_left_shift(char *str, params_t *myparams);
 
 /* params.c module */
-void init_params(myparams_t *myparams, va_list arg);
+void init_params(params_t *myparams, va_list arg);
 
 /* string_fields.c modoule */
-char *get_precision(char *p, myparams_t *myparams, va_list arg);
+char *get_precision(char *p, params_t *myparams, va_list arg);
 
 /* _prinf.c module */
 int _printf(const char *format, ...);

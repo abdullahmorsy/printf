@@ -9,7 +9,7 @@
  *
  * Return: string
  */
-char *convert(long int mynum, int mybase, int myflags, myparams_t *myparams)
+char *convert(long int mynum, int mybase, int myflags, params_t *myparams)
 {
 	static char *array;
 	static char buffer[50];
@@ -44,7 +44,7 @@ char *convert(long int mynum, int mybase, int myflags, myparams_t *myparams)
  *
  * Return: bytes printed
  */
-int print_unsigned(va_list arg, myparams_t *myparams)
+int print_unsigned(va_list arg, params_t *myparams)
 {
 	unsigned long l;
 
@@ -67,7 +67,7 @@ int print_unsigned(va_list arg, myparams_t *myparams)
  *
  * Return: bytes printed
  */
-int print_address(va_list arg, myparams_t *myparams)
+int print_address(va_list arg, params_t *myparams)
 {
 	unsigned long int n = va_arg(arg, unsigned long int);
 	char *str;
