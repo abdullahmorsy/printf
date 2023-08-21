@@ -20,7 +20,7 @@
 #define CONVERT_UNSIGNED	2
 
 /**
- * struct parameters - parameters struct
+ * struct myparameters - myparameters struct
  *
  * @unsign: flag if unsigned value
  *
@@ -38,7 +38,7 @@
  *
  */
 
-typedef struct parameters
+typedef struct myparameters
 {
 	unsigned int unsign			: 1;
 
@@ -72,47 +72,47 @@ int _puts(char *str);
 int _putchar(int c);
 
 /* print_functions.c module */
-int print_char(va_list ap, params_t *params);
-int print_int(va_list ap, params_t *params);
-int print_string(va_list ap, params_t *params);
-int print_percent(va_list ap, params_t *params);
-int print_S(va_list ap, params_t *params);
+int print_char(va_list arg, params_t *myparams);
+int print_int(va_list arg, params_t *myparams);
+int print_string(va_list arg, params_t *myparams);
+int print_percent(va_list arg, params_t *myparams);
+int print_S(va_list arg, params_t *myparams);
 
 /* number.c module */
-char *convert(long int num, int base, int flags, params_t *params);
-int print_unsigned(va_list ap, params_t *params);
-int print_address(va_list ap, params_t *params);
+char *convert(long int mynum, int mybase, int myflags, params_t *myparams);
+int print_unsigned(va_list arg, params_t *myparams);
+int print_address(va_list arg, params_t *myparams);
 
 /* specifier.c module */
-int (*get_specifier(char *s))(va_list ap, params_t *params);
-int get_print_func(char *s, va_list ap, params_t *params);
-int get_flag(char *s, params_t *params);
-int get_modifier(char *s, params_t *params);
-char *get_width(char *s, params_t *params, va_list ap);
+int (*get_specifier(char *s))(va_list arg, params_t *myparams);
+int get_print_func(char *s, va_list arg, params_t *myparams);
+int get_flag(char *s, params_t *myparams);
+int get_modifier(char *s, params_t *myparams);
+char *get_width(char *s, params_t *myparams, va_list arg);
 
 /* convert_number.c module */
-int print_hex(va_list ap, params_t *params);
-int print_HEX(va_list ap, params_t *params);
-int print_binary(va_list ap, params_t *params);
-int print_octal(va_list ap, params_t *params);
+int print_hex(va_list arg, params_t *myparams);
+int print_HEX(va_list arg, params_t *myparams);
+int print_binary(va_list arg, params_t *myparams);
+int print_octal(va_list arg, params_t *myparams);
 
 /* simple_printers.c module */
 int print_from_to(char *start, char *stop, char *except);
-int print_rev(va_list ap, params_t *params);
-int print_rot13(va_list ap, params_t *params);
+int print_rev(va_list arg, params_t *myparams);
+int print_rot13(va_list arg, params_t *myparams);
 
 /* print_number.c module */
 int _isdigit(int c);
 int _strlen(char *s);
-int print_number(char *str, params_t *params);
-int print_number_right_shift(char *str, params_t *params);
-int print_number_left_shift(char *str, params_t *params);
+int print_number(char *str, params_t *myparams);
+int print_number_right_shift(char *str, params_t *myparams);
+int print_number_left_shift(char *str, params_t *myparams);
 
 /* params.c module */
-void init_params(params_t *params, va_list ap);
+void init_params(params_t *myparams, va_list arg);
 
 /* string_fields.c modoule */
-char *get_precision(char *p, params_t *params, va_list ap);
+char *get_precision(char *p, params_t *myparams, va_list arg);
 
 /* _prinf.c module */
 int _printf(const char *format, ...);
